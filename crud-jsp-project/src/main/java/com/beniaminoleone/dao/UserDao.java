@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.beniaminoleone.model.Privileges;
 import com.beniaminoleone.model.User;
+import com.beniaminoleone.service.UserService;
 import com.beniaminoleone.util.Encryption;
 
 public class UserDao {
@@ -35,7 +36,7 @@ public class UserDao {
 	
 	public int deleteUserByUsername(User u, Connection c) {
 		int status = 0;
-		if(!u.isAdmin()) {	
+		if(!UserService.isAdmin(u)) {	
 			try {
 				PreparedStatement ps = c.prepareStatement("delete from users where username = ? ");	
 				ps.setString(1, u.getUsername());

@@ -27,9 +27,8 @@ public class LoginServlet extends HttpServlet {
 			User u = UserService.uDao.findUserByUsername(DBconnection.connecToDB(), username);
 			session.setAttribute("username", u.getUsername());
 			session.setAttribute("privileges", u.getPrivileges().toString());
+		}
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
-			}
-	
 		
 	}
 

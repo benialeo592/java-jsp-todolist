@@ -1,5 +1,8 @@
 package com.beniaminoleone.model;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class User {
 	
 	private int id;
@@ -8,6 +11,7 @@ public class User {
 	private String username;
 	private String password;
 	private Privileges privileges;
+	private List<Note> notes;
 	
 	public User(int id, String firstName, String surname, String username, String password, Privileges privileges) {
 		super();
@@ -18,6 +22,18 @@ public class User {
 		this.password = password;
 		this.privileges = privileges;
 	}
+	
+	public User(int id, String firstName, String surname, String username, String password, Privileges privileges, List<Note> notes) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.surname = surname;
+		this.username = username;
+		this.password = password;
+		this.privileges = privileges;
+		this.notes = notes;
+	}
+	
 
 	public User() {
 
@@ -72,17 +88,20 @@ public class User {
 		this.privileges = privileges;
 	}
 
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", surname=" + surname + ", username=" + username
 				+ ", password=" + password + ", privileges=" + privileges + "]";
 	}
 
-	public boolean isAdmin(){
-		if(this.privileges == Privileges.ADMIN) {
-			return true;
-		}
-			return false;
-	}
+	
 	
 }

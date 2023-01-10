@@ -1,26 +1,29 @@
 package com.beniaminoleone.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.beniaminoleone.service.UserService;
+import com.beniaminoleone.dao.NoteDao;
+import com.beniaminoleone.model.Note;
 import com.beniaminoleone.util.DBconnection;
 
 
-public class RemoveServlet extends HttpServlet {
+public class ToDoListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String privileges = request.getParameter("privileges");
-		int idn = Integer.parseInt(id);
-		UserService.uDao.deleteUserById(idn, privileges, DBconnection.connecToDB());
-		response.sendRedirect("index.jsp");
+		
+		String username = request.getParameter("username");
+		request.getSession().setAttribute("user", username);
+		request.getRequestDispatcher("detailsView.jsp").forward(request, response);
+		
+		
 	}
-
-
 
 }

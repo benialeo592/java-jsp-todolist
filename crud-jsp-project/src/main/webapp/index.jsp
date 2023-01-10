@@ -22,7 +22,6 @@
 			<th>Surname</th>
 			<th>Username</th>
 			<th>Privileges</th>
-			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 			<%for(User u : list){%>
@@ -30,9 +29,8 @@
 				<td><%=u.getId()%></td>
 				<td><%=u.getFirstName()%></td>
 				<td><%=u.getSurname()%></td>
-				<td><%=u.getUsername()%></td>
+				<%if(request.getSession().getAttribute("username") != null && request.getSession().getAttribute("username").equals(u.getUsername()) || request.getSession().getAttribute("privileges") == "ADMIN" ){%><td><a href="ToDoListServlet?username=<%=u.getUsername()%>"><%=u.getUsername()%></a></td><%}else{%><td><%=u.getUsername()%></td><%}%>
 				<td><%=u.getPrivileges()%></td>
-				<%if(request.getSession().getAttribute("username") != null && request.getSession().getAttribute("privileges") == "ADMIN"){%><td>Edit</td><%}%>
 				<%if(request.getSession().getAttribute("username") != null && request.getSession().getAttribute("privileges") == "ADMIN"){%><td><a href="RemoveServlet?id=<%=u.getId()%>&privileges=<%=u.getPrivileges()%>"><button>Delete</button></a></td><%}%>
 			</tr>	
 			<%}%>	

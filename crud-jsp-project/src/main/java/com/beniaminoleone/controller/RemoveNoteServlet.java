@@ -10,17 +10,16 @@ import com.beniaminoleone.service.UserService;
 import com.beniaminoleone.util.DBconnection;
 
 
-public class RemoveServlet extends HttpServlet {
+public class RemoveNoteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		String privileges = request.getParameter("privileges");
-		int idn = Integer.parseInt(id);
-		UserService.uDao.deleteUserById(idn, privileges, DBconnection.connecToDB());
-		response.sendRedirect("index.jsp");
+		int id =  Integer.parseInt(request.getParameter("id"));
+		UserService.nDao.deleteNoteById(id, DBconnection.connecToDB());
+		response.sendRedirect("detailsView.jsp");
+		
 	}
 
-
+	
 
 }
